@@ -1,4 +1,4 @@
-module github.com/boggydigital/match-node
+module github.com/boggydigital/match_node
 
 go 1.16
 
