@@ -2,7 +2,7 @@ package match_node
 
 import "golang.org/x/net/html"
 
-func matchNode(doc *html.Node, match func(node *html.Node) bool) *html.Node {
+func Match(doc *html.Node, match func(node *html.Node) bool) *html.Node {
 	var f func(*html.Node) *html.Node
 	f = func(n *html.Node) *html.Node {
 		if match(n) {
