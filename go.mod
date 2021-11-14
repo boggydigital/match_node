@@ -1,5 +1,5 @@
 module github.com/boggydigital/match_node
 
-go 1.16
+go 1.17
 
-require golang.org/x/net v0.0.0-20210525063256-abc453219eb5
+require golang.org/x/net v0.0.0-20211112202133-69e39bad7dc2
