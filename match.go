@@ -42,30 +42,36 @@ func Matches(doc *html.Node, delegate Matcher, limit int) []*html.Node {
 }
 
 type elementTypeClass struct {
-	a atom.Atom
-	c string
+	et atom.Atom
+	cl string
+	eq bool
 }
 
-func NewEtc(et atom.Atom, cc string) Matcher {
+func NewEtc(elementType atom.Atom, class string, classEquals bool) Matcher {
 	return &elementTypeClass{
-		a: et,
-		c: cc,
+		et: elementType,
+		cl: class,
+		eq: classEquals,
 	}
 }
 
 func (etc *elementTypeClass) Match(node *html.Node) bool {
-	if node.DataAtom != etc.a ||
+	if node.DataAtom != etc.et ||
 		len(node.Attr) == 0 {
 		return false
 	}
 
-	if etc.c == "" {
+	if etc.cl == "" {
 		return true
 	}
 
 	for _, attr := range node.Attr {
 		if attr.Key == "class" {
-			return strings.Contains(attr.Val, etc.c)
+			if etc.eq {
+				return attr.Val == etc.cl
+			} else {
+				return strings.Contains(attr.Val, etc.cl)
+			}
 		}
 	}
 
