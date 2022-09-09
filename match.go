@@ -59,6 +59,10 @@ func (etc *elementTypeClass) Match(node *html.Node) bool {
 		return false
 	}
 
+	if etc.c == "" {
+		return true
+	}
+
 	for _, attr := range node.Attr {
 		if attr.Key == "class" {
 			return strings.Contains(attr.Val, etc.c)
