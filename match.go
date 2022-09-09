@@ -57,7 +57,7 @@ func NewEtc(elementType atom.Atom, class string, classEquals bool) Matcher {
 
 func (etc *elementTypeClass) Match(node *html.Node) bool {
 	if node.DataAtom != etc.et ||
-		len(node.Attr) == 0 {
+		(etc.cl != "" && len(node.Attr) == 0) {
 		return false
 	}
 
