@@ -57,6 +57,7 @@ func (s *selector) Match(node *html.Node) bool {
 				return true
 			}
 		}
+		return false
 	}
 
 	if s.cl != "" {
@@ -65,7 +66,8 @@ func (s *selector) Match(node *html.Node) bool {
 				return true
 			}
 		}
+		return false
 	}
 
-	return false
+	return true
 }
