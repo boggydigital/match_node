@@ -53,23 +53,19 @@ func (s *selector) Match(node *html.Node) bool {
 
 	if s.id != "" {
 		for _, attr := range node.Attr {
-			if attr.Key == "id" {
-				if attr.Val != s.id {
-					return false
-				}
+			if attr.Key == "id" && attr.Val == s.id {
+				return true
 			}
 		}
 	}
 
 	if s.cl != "" {
 		for _, attr := range node.Attr {
-			if attr.Key == "class" {
-				if !strings.Contains(attr.Val, s.cl) {
-					return false
-				}
+			if attr.Key == "class" && strings.Contains(attr.Val, s.cl) {
+				return true
 			}
 		}
 	}
 
-	return true
+	return false
 }
